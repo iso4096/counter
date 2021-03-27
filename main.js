@@ -1,1 +1,13 @@
-let c=this['localStorage'];let d=document;let e=c['presses'];d.addEventListener('DOMContentLoaded',()=>{let f=d.getElementById('display');let g=()=>{f.innerHTML=e};if(!c.getItem('presses')){e=0}else{g()};d.querySelector('body').addEventListener('keypress',()=>{e=e==9999999999999?0:parseInt(e)+1;g();console.log(e)});d.getElementById('button').addEventListener('click',()=>{e=0;g()})})
+storage = window.localStorage;
+document.addEventListener('DOMContentLoaded', function() {
+    if (!storage.getItem('presses')) {storage.presses=0} else {document.getElementById('display').innerHTML = storage.presses;}
+    document.querySelector('body').addEventListener('keypress', function() {
+        storage.presses = storage.presses == 9999999999999 ? 0 : parseInt(storage.presses) + 1;
+        document.getElementById('display').innerHTML = storage.presses;
+        console.log(storage.presses);
+    });
+    document.getElementById('button').addEventListener('click', function() {
+        storage.presses = 0;
+        document.getElementById('display').innerHTML = storage.presses;
+    })
+});
